@@ -1,0 +1,38 @@
+package com.example.MedVollAPI.model;
+
+import com.example.MedVollAPI.dto.EnderecoDTO;
+import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Embeddable
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Endereco {
+    private String logradouro;
+    private String bairro;
+    private String cep;
+    private String uf;
+    private String numero;
+    private String complemento;
+
+    public Endereco(EnderecoDTO endereco) {
+        this.logradouro = endereco.logradouro();
+        this.bairro = endereco.bairro();
+        this.cep = endereco.cep();
+        this.uf = endereco.uf();
+        this.numero = endereco.numero();
+        this.complemento = endereco.complemento();
+    }
+
+    public void atualizarDados(EnderecoDTO endereco) {
+        this.logradouro = endereco.logradouro();
+        this.bairro = endereco.bairro();
+        this.cep = endereco.cep();
+        this.uf = endereco.uf();
+        this.numero = endereco.numero();
+        this.complemento = endereco.complemento();
+    }
+}
