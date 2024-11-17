@@ -1,6 +1,8 @@
 package com.example.MedVollAPI.controller;
 
 import com.example.MedVollAPI.dto.AutenticacaoDTO;
+import com.example.MedVollAPI.dto.TokenDTO;
+import com.example.MedVollAPI.service.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +20,14 @@ public class AutenticacaoController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private TokenService tokenService;
     @PostMapping
     public ResponseEntity login(@RequestBody @Valid AutenticacaoDTO autenticacaoDTO) {
-        var token = new UsernamePasswordAuthenticationToken(autenticacaoDTO.login(), autenticacaoDTO.senha());
-        var authentication = authenticationManager.authenticate(token);
-
-        return ResponseEntity.ok().build();
+        var authenticationToken = new UsernamePasswordAuthenticationToken(autenticacaoDTO.login(), autenticacaoDTO.senha());
+        var authentication = authenticationManager.authenticate(authenticationToken);
+        var tokenJWT = tokenService.gerarToken(autenticacaoDTO);
+        return ResponseEntity.ok(new TokenDTO(tokenJWT));
     }
 
 }
