@@ -17,6 +17,7 @@ public class Endereco {
     private String uf;
     private String numero;
     private String complemento;
+    private String cidade;
 
     public Endereco(EnderecoDTO endereco) {
         this.logradouro = endereco.logradouro();
@@ -25,6 +26,7 @@ public class Endereco {
         this.uf = endereco.uf();
         this.numero = endereco.numero();
         this.complemento = endereco.complemento();
+        this.cidade = endereco.cidade();
     }
 
     public void atualizarDados(EnderecoDTO endereco) {
@@ -34,5 +36,6 @@ public class Endereco {
         this.uf = endereco.uf();
         this.numero = endereco.numero();
         this.complemento = endereco.complemento();
+        this.cidade = endereco.cidade();
     }
 }

@@ -39,6 +39,7 @@ public class Medico {
         this.especialidade = medicoDTO.especialidade();
         this.endereco = new Endereco(medicoDTO.endereco());
         this.telefone = medicoDTO.telefone();
+        this.ativo = true;
     }
 
     public void atualizarDados(MedicoAtualizarDTO dados) {
