@@ -23,4 +23,9 @@ public class TratadorDeErros {
         var erros = exception.getFieldErrors().stream().map(e-> new Erro(e.getField(), e.getDefaultMessage()));
         return ResponseEntity.badRequest().body(erros);
     }
+
+    @ExceptionHandler(ValidacaoException.class)
+    public ResponseEntity tratarErroRegraDeNegocio(ValidacaoException exception) {
+        return ResponseEntity.badRequest().body(exception.getMessage());
+    }
 }
